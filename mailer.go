@@ -33,11 +33,12 @@ func New(config *Config) *Mailer {
 		config.AssetFS = assetfs.AssetFS().NameSpace("mailer")
 	}
 
-	config.AssetFS.RegisterPath("app/views/mailers")
+	//config.AssetFS.RegisterPath("app/views/mailers")
 
 	if config.Render == nil {
 		config.Render = render.New(&render.Config{
 			AssetFileSystem: config.AssetFS,
+			ViewPaths:       []string{"app/views/mailers"},
 		})
 	}
 
