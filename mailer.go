@@ -36,8 +36,9 @@ func New(config *Config) *Mailer {
 	config.AssetFS.RegisterPath("app/views/mailers")
 
 	if config.Render == nil {
-		config.Render = render.New(nil)
-		config.Render.SetAssetFS(config.AssetFS)
+		config.Render = render.New(&render.Config{
+			AssetFileSystem: config.AssetFS,
+		})
 	}
 
 	return &Mailer{config}
